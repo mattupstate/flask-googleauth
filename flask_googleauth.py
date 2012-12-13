@@ -277,6 +277,6 @@ class GoogleFederated(GoogleAuth):
     Super simple Google Federated Auth for a given domain.
     """
 
-    def __init__(self, app, domain, install=True, url_prefix=None):
+    def __init__(self, app, domain, url_prefix=None, name='GoogleAuth'):
         self._OPENID_ENDPOINT = "https://www.google.com/a/%s/o8/ud?be=o8" % domain
-        super(GoogleFederated, self).__init__(app, install, url_prefix)
+        super(GoogleFederated, self).__init__(app, url_prefix, name)
