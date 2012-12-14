@@ -223,8 +223,9 @@ class GoogleAuth(OpenIdMixin):
         blueprint = Blueprint(name, __name__, url_prefix=url_prefix)
         blueprint.add_url_rule("/login/", "login", self._login, methods=["GET", "POST"])
         blueprint.add_url_rule("/logout/", "logout", self._logout, methods=["GET", "POST"])
-        app.register_blueprint(blueprint)
 
+        app.register_blueprint(blueprint)
+        app.before_request(self._before_request)
         app.extensions['googleauth'] = ObjectDict(blueprint=blueprint)
 
     def _before_request(self):
